@@ -2,11 +2,11 @@
 // 此檔案是由 JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.7 所產生 
 // 請參閱 <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // 一旦重新編譯來源綱要, 對此檔案所做的任何修改都將會遺失. 
-// 產生時間: 2021.01.11 於 10:57:44 AM CST 
+// 產生時間: 2021.01.11 於 12:43:23 PM CST 
 //
 
 
-package com.bill.webservice.xsdmodel.student;
+package com.bill.webservice.student;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the com.bill.webservice.xsdmodel.student package. 
+ * generated in the com.bill.webservice.student package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -30,7 +30,7 @@ public class ObjectFactory {
 
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.bill.webservice.xsdmodel.student
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.bill.webservice.student
      * 
      */
     public ObjectFactory() {

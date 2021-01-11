@@ -21,13 +21,13 @@ public class StudentRepository {
     	students.put(jack.getStudentId(), jack);
     	
     	Student bill = new Student();
-    	jack.setStudentId("2");
-    	jack.setStudentName("Bill");
+    	bill.setStudentId("2");
+    	bill.setStudentName("Bill");
     	students.put(bill.getStudentId(), bill);
     	
     	Student mary = new Student();
-    	jack.setStudentId("3");
-    	jack.setStudentName("Mary");
+    	mary.setStudentId("3");
+    	mary.setStudentName("Mary");
     	students.put(mary.getStudentId(), mary);    	
     }
 

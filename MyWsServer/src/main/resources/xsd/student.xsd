@@ -1,6 +1,6 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	targetNamespace="http://www.webservice.bill.com/xsdmodel/student"
-	xmlns:tns="http://www.webservice.bill.com/xsdmodel/student" elementFormDefault="qualified">
+	targetNamespace="http://www.webservice.bill.com/student"
+	xmlns:tns="http://www.webservice.bill.com/student" elementFormDefault="qualified">
 	<xs:element name="getStudentRequest">
 		<xs:complexType>
 			<xs:sequence>
@@ -8,7 +8,7 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="getStudentResponse"> 
+	<xs:element name="getStudentResponse">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="student" type="tns:student" />

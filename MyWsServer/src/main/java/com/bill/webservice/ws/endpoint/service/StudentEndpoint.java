@@ -6,9 +6,9 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import com.bill.webservice.ws.endpoint.model.GetStudentRequest;
 import com.bill.webservice.ws.endpoint.model.GetStudentResponse;
 import com.bill.webservice.ws.endpoint.model.Student;
-import com.bill.webservice.xsdmodel.student.GetStudentRequest;
 
 @Endpoint
 public class StudentEndpoint {
@@ -17,8 +17,8 @@ public class StudentEndpoint {
     @Autowired
     StudentRepository studentRepository;
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getBookRequest")
-    public @ResponsePayload GetStudentResponse getBookByIsbn(@RequestPayload GetStudentRequest request)
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getStudentRequest")
+    public @ResponsePayload GetStudentResponse getStudentById(@RequestPayload GetStudentRequest request)
             throws InterruptedException {
     	GetStudentResponse response = new GetStudentResponse();
         Student student = studentRepository.findStudentById(request.getStudentId());

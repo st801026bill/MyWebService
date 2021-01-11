@@ -25,7 +25,7 @@ public class WebServiceConfig {
     }
 		
     @Bean
-    public XsdSchema bookSchema() {
+    public XsdSchema studentSchema() {
         return new SimpleXsdSchema(new ClassPathResource("xsd/student.xsd"));
     }
 
