@@ -97,3 +97,63 @@ URL： http://localhost:8080/studentService
     
 **二. 建立Web Service Client(MyWsClient)** 
 ---
+
+**1. 添加依賴**  
+dependency
+```sql
+1. spring-boot-starter-web-services : Spring-WS 的集成套件
+2. httpclient : 用於設定連線逾時時間相關物件
+```
+
+**2. 生成 Java 物件**  
+首先從 Server 端下載 WSDL 文件並放入 resources 資料夾中  
+```src/main/resources/student.wsdl```  
+有兩種生成方式，一種是用 maven plugin、另一種是用 command line 方式產生，這裡使用plugin當作範例。
+```sql
+<plugin>
+    <groupId>org.jvnet.jaxb2.maven2</groupId>
+    <artifactId>maven-jaxb2-plugin</artifactId>
+    <version>0.14.0</version>
+    <executions>
+	<execution>
+	    <goals>
+		<goal>generate</goal>
+	    </goals>
+	</execution>
+    </executions>
+    <configuration>
+	<schemaLanguage>WSDL</schemaLanguage>
+	<generateDirectory>${project.basedir}/src/main/java</generateDirectory>
+	<generatePackage>com.bill.webservice.demo1.model</generatePackage>
+	<schemaDirectory>${project.basedir}/src/main/resources</schemaDirectory>
+	<schemaIncludes>
+	    <include>student.wsdl</include>
+	</schemaIncludes>
+    </configuration>
+</plugin>
+```
+
+**3. 創建 Client 服務** : ```StudentClient.java```  
+Client 服務可以繼承 Spring 的 WebServiceGatewaySupport 來實現，其中使用 WebServiceTemplate 的 marshalSendAndReceive 方法執行與 Web Service 的 SOAP 訊息交換；若不想繼承 WebServiceGatewaySupport ，也可以用創建 WebServiceTemplate 的 Bean 的方式來實做 Client 服務。
+
+在訊息交換的流程中我們捕捉了三種常見 Exception，
+ConnectException：連線被拒絕，例如當 Server 端關閉時。
+ConnectTimeoutException：連線途中或是等待可用的連線中逾時。
+SocketTimeoutException：Server 處理回應中逾時。
+
+**4. 配置 Client 服務** : ```WebClientConfig.java```  
+Jaxb2Marshaller：  
+我們為序列化工具設定 JAXB 物件（Java Architecture for XML Binding，將 Java 類映射為 XML 的表示方式）的位置，也就是方才我們從 WSDL 生成 Java物件的資料夾路徑。  
+
+WebServiceMessageSender：  
+為了避免等待 Server 端連線或是回應時間過長導致後續流程受阻，這裡用 WebServiceMessageSender 的實作類 HttpComponentsMessageSender 來控制等待的時間，setConnectionTimeout 表示與 Server 建立連線時的等待時間、setReadTimeout 表示等待 Server 回應的時間，單位都是毫秒（milliseconds）。  
+
+接者將以上配置設定到 Client 物件：  
+setDefaultUri 設定Server 端的地址，即與 WSDL 檔中 <soap:address location> 的值相同 ；setMarshaller、setUnmarshaller 設定序列化工具；setMessageSender 設定逾時時間；至於 setInterceptors 則是為了印出 SOAP 訊息所加的攔截器。  
+
+**5. 設置攔截器** : ```LoggingInterceptor.java```  
+藉由實做 ClientInterceptor 的方法對 SOAP 的請求回應再次加工。一次完整的請求回應會經過 handleRequest、handleResponse（或handleFault）、afterCompletion；若是出現 TimeoutException 或是 ConnectException 則是只有 handleRequest 和 afterCompletion。由於攔截器可以設置多個，返回的布林值是 True 時表示要繼續下個攔截器。
+
+**6. 執行** : 
+1. 啟動 MyWsServer 與 MyWsClient
+2. curl Get http://localhost:8081/wsclient/endpoint/1
