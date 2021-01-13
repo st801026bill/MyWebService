@@ -6,4 +6,4 @@
 //
 
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://www.webservice.bill.com/student", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package com.bill.webservice.ws.endpoint.model;
+package com.bill.webservice.demo1.model;

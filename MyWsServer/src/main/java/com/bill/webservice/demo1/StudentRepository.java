@@ -1,4 +1,4 @@
-package com.bill.webservice.ws.endpoint.service;
+package com.bill.webservice.demo1;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +7,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Component;
 
-import com.bill.webservice.ws.endpoint.model.Student;
+import com.bill.webservice.demo1.model.Student;
 
 @Component
 public class StudentRepository {

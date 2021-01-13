@@ -6,7 +6,7 @@
 //
 
 
-package com.bill.webservice.ws.endpoint.model;
+package com.bill.webservice.demo1.model;
 
 import javax.xml.bind.annotation.XmlRegistry;
 

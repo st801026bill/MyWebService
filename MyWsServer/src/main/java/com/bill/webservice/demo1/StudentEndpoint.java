@@ -1,4 +1,4 @@
-package com.bill.webservice.ws.endpoint.service;
+package com.bill.webservice.demo1;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -6,9 +6,9 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import com.bill.webservice.ws.endpoint.model.GetStudentRequest;
-import com.bill.webservice.ws.endpoint.model.GetStudentResponse;
-import com.bill.webservice.ws.endpoint.model.Student;
+import com.bill.webservice.demo1.model.GetStudentRequest;
+import com.bill.webservice.demo1.model.GetStudentResponse;
+import com.bill.webservice.demo1.model.Student;
 
 @Endpoint
 public class StudentEndpoint {

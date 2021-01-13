@@ -1,4 +1,4 @@
-package com.bill.webservice.ws.endpoint.service;
+package com.bill.webservice.demo1;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
