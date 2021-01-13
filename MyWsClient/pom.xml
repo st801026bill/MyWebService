@@ -18,10 +18,19 @@
 		<java.version>1.8</java.version>
 	</properties>
 
-	<dependencies>
+	<dependencies>	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web-services</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
 		</dependency>
 
 		<dependency>
@@ -42,6 +51,27 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+			    <groupId>org.jvnet.jaxb2.maven2</groupId>
+			    <artifactId>maven-jaxb2-plugin</artifactId>
+			    <version>0.14.0</version>
+			    <executions>
+			        <execution>
+			            <goals>
+			                <goal>generate</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			    <configuration>
+			        <schemaLanguage>WSDL</schemaLanguage>
+			        <generateDirectory>${project.basedir}/src/main/java</generateDirectory>
+			        <generatePackage>com.bill.webservice.demo1.model</generatePackage>
+			        <schemaDirectory>${project.basedir}/src/main/resources</schemaDirectory>
+			        <schemaIncludes>
+			            <include>student.wsdl</include>
+			        </schemaIncludes>
+			    </configuration>
 			</plugin>
 		</plugins>
 	</build>
