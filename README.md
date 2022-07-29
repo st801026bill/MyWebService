@@ -1,3 +1,5 @@
+本範例出處: https://www.tpisoftware.com/tpu/articleDetails/1969
+
 **一. 建立Web Service Server(MyWsServer)** 
 ---
 
